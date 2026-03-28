@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SuperMarket Pro - Project Report | DTMD 5312</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", "Roboto", "Times New Roman", serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      /* Cover Page */
+      .cover {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: white;
+        text-align: center;
+        padding: 80px 40px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(243,202,32,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>')
+          no-repeat bottom;
+        background-size: cover;
+        opacity: 0.3;
+      }
+
+      .cover h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .cover h1 span {
+        color: #f3ca20;
+      }
+
+      .cover p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        position: relative;
+      }
+
+      .cover .date {
+        margin-top: 40px;
+        font-size: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        padding-top: 20px;
+        display: inline-block;
+      }
+
+      /* Sections */
+      .section {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #f3ca20;
+      }
+
+      .section h2 {
+        color: #000000;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f3ca20;
+      }
+
+      .section h3 {
+        color: #000000;
+        font-size: 1.3rem;
+        margin: 20px 0 15px 0;
+      }
+
+      .section h4 {
+        color: #f3ca20;
+        font-size: 1.1rem;
+        margin: 15px 0 10px 0;
+      }
+
+      /* Tables */
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .info-table th,
+      .info-table td {
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        text-align: left;
+      }
+
+      .info-table th {
+        background: #000000;
+        color: #f3ca20;
+      }
+
+      .info-table tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+
+      /* Role Cards */
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .role-card {
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 20px;
+        border-top: 3px solid #f3ca20;
+      }
+
+      .role-card h4 {
+        color: #000000;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      .role-card ul {
+        padding-left: 20px;
+      }
+
+      .role-card li {
+        margin-bottom: 8px;
+      }
+
+      /* Screenshot Grid */
+      .screenshot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin: 20px 0;
+      }
+
+      .screenshot-card {
+        background: #f9f9f9;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+      }
+
+      .screenshot-placeholder {
+        background: linear-gradient(135deg, #000000, #333333);
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f3ca20;
+        font-size: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .screenshot-placeholder i {
+        font-size: 3rem;
+        opacity: 0.7;
+      }
+
+      .screenshot-card .caption {
+        padding: 15px;
+        background: white;
+      }
+
+      .screenshot-card .caption h5 {
+        color: #000000;
+        margin-bottom: 10px;
+      }
+
+      .screenshot-card .caption p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0 5px;
+      }
+
+      .badge-success {
+        background: #28a745;
+        color: white;
+      }
+
+      .badge-warning {
+        background: #f3ca20;
+        color: #000000;
+      }
+
+      .badge-info {
+        background: #17a2b8;
+        color: white;
+      }
+
+      /* Checklist */
+      .checklist {
+        list-style: none;
+        padding: 0;
+      }
+
+      .checklist li {
+        padding: 10px 0;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .checklist li i {
+        color: #28a745;
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 30px;
+        background: #000000;
+        color: #f3ca20;
+        border-radius: 20px;
+        margin-top: 40px;
+      }
+
+      .footer a {
+        color: #f3ca20;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Screenshot Image */
+      .screenshot-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Print Styles */
+      @media print {
+        body {
+          background: white;
+        }
+        .cover {
+          background: #000000;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .section {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .screenshot-grid {
+          break-inside: avoid;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .cover h1 {
+          font-size: 2rem;
+        }
+        .role-grid,
+        .screenshot-grid {
+          grid-template-columns: 1fr;
+        }
+        .section {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Cover Page -->
+      <div class="cover">
+        <h1>NEZA SuperMarket <span>Pro</span></h1>
+        <p>Complete Supermarket Management System</p>
+        <p style="font-size: 1rem; margin-top: 20px">
+          Inventory Management | Point of Sale | Sales Analytics
+        </p>
+        <div class="date">
+          <p>Design Thinking and Didactic Material Development (DTMD 5312)</p>
+          <p>Faculty of Education | Department of Didactics</p>
+          <p><strong>Module Leader:</strong> Etienne NTAMBARA, Ass. Lecturer</p>
+          <p><strong>Submission Date:</strong> March 2026</p>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="section">
+        <h2>📑 Table of Contents</h2>
+        <ol style="columns: 2; column-gap: 40px">
+          <li>Project Overview</li>
+          <li>Problem Statement</li>
+          <li>Solution Overview</li>
+          <li>System Architecture</li>
+          <li>User Roles & Permissions</li>
+          <li>Database Design</li>
+          <li>Key Functionalities by Role</li>
+          <li>Screenshots & Demonstrations</li>
+          <li>Security Features</li>
+          <li>Technology Stack</li>
+          <li>Deployment & Links</li>
+          <li>Conclusion & Marking Checklist</li>
+        </ol>
+      </div>
+
+      <!-- 1. Project Overview -->
+      <div class="section">
+        <h2>🎯 1. Project Overview</h2>
+        <p>
+          <strong>SuperMarket Pro</strong> is a comprehensive web-based
+          supermarket management system that streamlines retail operations. It
+          provides complete inventory management, point of sale (POS), sales
+          tracking, and reporting capabilities for supermarkets and retail
+          stores.
+        </p>
+
+        <h3>Project Objectives</h3>
+        <ul>
+          <li>Create a complete supermarket management solution</li>
+          <li>Enable efficient inventory and stock management</li>
+          <li>Provide a fast and user-friendly point of sale system</li>
+          <li>Track sales, revenue, and generate business reports</li>
+          <li>Implement role-based access for different staff positions</li>
+          <li>Deliver a responsive interface accessible on all devices</li>
+        </ul>
+      </div>
+
+      <!-- 2. Problem Statement -->
+      <div class="section">
+        <h2>❓ 2. Problem Statement</h2>
+        <p>Traditional supermarket operations face several challenges:</p>
+        <ul>
+          <li>
+            <strong>Manual Inventory Tracking:</strong> Difficulty tracking
+            stock levels and low stock alerts
+          </li>
+          <li>
+            <strong>Inefficient Checkout:</strong> Slow manual billing processes
+          </li>
+          <li>
+            <strong>No Centralized System:</strong> Separate systems for
+            inventory, sales, and reporting
+          </li>
+          <li>
+            <strong>Stock Management Issues:</strong> Stockouts leading to lost
+            sales, overstocking tying up capital
+          </li>
+          <li>
+            <strong>Lack of Real-time Analytics:</strong> No instant visibility
+            into sales performance
+          </li>
+        </ul>
+        <p>
+          <strong>Our Solution:</strong> SuperMarket Pro addresses these
+          challenges by providing an integrated system for inventory management,
+          point of sale, and business analytics all in one platform.
+        </p>
+      </div>
+
+      <!-- 3. Solution Overview -->
+      <div class="section">
+        <h2>💡 3. Solution Overview</h2>
+        <p>
+          SuperMarket Pro is a complete supermarket management ecosystem with
+          three distinct user roles:
+        </p>
+
+        <div class="role-grid">
+          <div class="role-card">
+            <h4>👑 Admin</h4>
+            <ul>
+              <li>Full system control and oversight</li>
+              <li>User management (CRUD operations)</li>
+              <li>Product management (CRUD)</li>
+              <li>Category and supplier management</li>
+              <li>View all sales and revenue reports</li>
+              <li>System configuration</li>
+            </ul>
+          </div>
+          <div class="role-card">
+            <h4>📊 Manager</h4>
+            <ul>
+              <li>Product management (add, edit, delete)</li>
+              <li>Inventory tracking and stock updates</li>
+              <li>View sales reports and analytics</li>
+              <li>Manage low stock alerts</li>
+              <li>View all transactions</li>
+              <li>Generate sales reports</li>
+            </ul>
+          </div>
+          <div class="role-card">
+            <h4>🛒 Cashier</h4>
+            <ul>
+              <li>Process sales at point of sale (POS)</li>
+              <li>View products and prices</li>
+              <li>Generate invoices for customers</li>
+              <li>Search products by name or barcode</li>
+              <li>Calculate totals with tax</li>
+              <li>Print receipts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. System Architecture -->
+      <div class="section">
+        <h2>🏗️ 4. System Architecture</h2>
+        <h3>MVC-Like Structure</h3>
+        <ul>
+          <li>
+            <strong>Models:</strong> Database interaction via PDO (config.php)
+          </li>
+          <li><strong>Views:</strong> PHP files with HTML/CSS templates</li>
+          <li>
+            <strong>Controllers:</strong> PHP logic handling requests and
+            responses
+          </li>
+        </ul>
+
+        <h3>Folder Structure</h3>
+        <pre
+          style="
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+          "
+        >
+supermarket-management/
+├── # Admin panel files
+│   ├── dashboard.php
+│   ├── manage_users.php
+│   ├── manage_products.php
+│   ├── manage_categories.php
+│   ├── manage_suppliers.php
+│   └── reports.php
+├── # Cashier panel files
+│   ├── dashboard.php
+│   ├── pos.php
+│   └── sales_history.php
+├── # Manager panel files
+│   ├── dashboard.php
+│   ├── inventory.php
+│   ├── products.php
+│   └── sales_reports.php
+├── # Configuration files
+│   └── config.php
+├── # Header and footer templates
+│   ├── header.php
+│   └── footer.php
+├── uploads/               # Product images
+├── index.php              # Landing page
+├── login.php
+├── register.php
+└── profile.php
+            </pre
+        >
+      </div>
+
+      <!-- 5. User Roles & Permissions -->
+      <div class="section">
+        <h2>👥 5. User Roles & Permissions</h2>
+
+        <h3>Test Accounts</h3>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Permissions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="badge" style="background: #000000; color: #f3ca20"
+                  >Admin</span
+                >
+              </td>
+              <td>admin@supermarket.com</td>
+              <td>admin123</td>
+              <td>
+                Full system access, manage all users, products, categories,
+                suppliers, reports
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="badge" style="background: #f3ca20; color: #000000"
+                  >Manager</span
+                >
+              </td>
+              <td>manager@supermarket.com</td>
+              <td>manager123</td>
+              <td>
+                Product management, inventory tracking, sales reports, stock
+                alerts
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="badge" style="background: #28a745; color: white"
+                  >Cashier</span
+                >
+              </td>
+              <td>cashier@supermarket.com</td>
+              <td>cashier123</td>
+              <td>Process sales, view products, generate invoices</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Permission Matrix</h3>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Admin</th>
+              <th>Manager</th>
+              <th>Cashier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>View Products</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td>Add Products</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Edit Products</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Delete Products</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Update Stock</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Process Sales (POS)</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td>View Sales Reports</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Manage Users</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Manage Categories</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Manage Suppliers</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Low Stock Alerts</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 6. Database Design -->
+      <div class="section">
+        <h2>🗄️ 6. Database Design</h2>
+        <p>
+          The system uses <strong>7+ tables</strong> with proper relationships
+          and foreign keys.
+        </p>
+
+        <h3>Table Structure</h3>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Table</th>
+              <th>Description</th>
+              <th>Key Fields</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>users</td>
+              <td>User accounts & authentication</td>
+              <td>id, name, email, password, role, status</td>
+            </tr>
+            <tr>
+              <td>categories</td>
+              <td>Product categories</td>
+              <td>id, name, description, status</td>
+            </tr>
+            <tr>
+              <td>suppliers</td>
+              <td>Product suppliers</td>
+              <td>id, name, contact, phone, email</td>
+            </tr>
+            <tr>
+              <td>products</td>
+              <td>Product inventory</td>
+              <td>
+                id, name, barcode, category_id, supplier_id, price, stock, image
+              </td>
+            </tr>
+            <tr>
+              <td>sales</td>
+              <td>Sales transactions</td>
+              <td>
+                id, invoice_number, user_id, total_amount, payment_method,
+                sale_date
+              </td>
+            </tr>
+            <tr>
+              <td>sale_items</td>
+              <td>Individual sale items</td>
+              <td>id, sale_id, product_id, quantity, unit_price, subtotal</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Entity Relationship Diagram (ERD)</h3>
+        <ul>
+          <li>Users → Sales (one-to-many) - Cashier processes sales</li>
+          <li>Products → Sale Items (one-to-many) - Products in sales</li>
+          <li>Sales → Sale Items (one-to-many) - Sale contains items</li>
+          <li>Products → Categories (many-to-one) - Product categorization</li>
+          <li>Products → Suppliers (many-to-one) - Product sourcing</li>
+        </ul>
+      </div>
+
+      <!-- 7. Key Functionalities by Role -->
+      <div class="section">
+        <h2>⚙️ 7. Key Functionalities by Role</h2>
+
+        <h3>Admin CRUD Operations</h3>
+        <ul class="checklist">
+          <li>
+            <i class="✅">✅</i> <strong>Create:</strong> Add new users,
+            products, categories, suppliers
+          </li>
+          <li>
+            <i class="✅">✅</i> <strong>Read:</strong> View all users,
+            products, sales, reports
+          </li>
+          <li>
+            <i class="✅">✅</i> <strong>Update:</strong> Edit user roles,
+            product details, category information
+          </li>
+          <li>
+            <i class="✅">✅</i> <strong>Delete:</strong> Remove users,
+            products, categories (with confirmation)
+          </li>
+          <li>
+            <i class="✅">✅</i> <strong>Activate/Deactivate:</strong> Toggle
+            user and product status
+          </li>
+        </ul>
+
+        <h3>Manager Functionalities</h3>
+        <ul>
+          <li>
+            <strong>Product Management:</strong> Add, edit, and delete products
+            with images
+          </li>
+          <li>
+            <strong>Inventory Tracking:</strong> Update stock levels, monitor
+            low stock alerts
+          </li>
+          <li>
+            <strong>Sales Reports:</strong> View daily, weekly, monthly sales
+            reports
+          </li>
+          <li>
+            <strong>Revenue Analytics:</strong> Track total revenue, average
+            sale value
+          </li>
+          <li>
+            <strong>Stock Alerts:</strong> Automatic notifications for low stock
+            items
+          </li>
+        </ul>
+
+        <h3>Cashier Functionalities</h3>
+        <ul>
+          <li>
+            <strong>Point of Sale (POS):</strong> Fast and intuitive checkout
+            interface
+          </li>
+          <li>
+            <strong>Product Search:</strong> Search by name or barcode for quick
+            billing
+          </li>
+          <li>
+            <strong>Shopping Cart:</strong> Add/remove items, adjust quantities
+          </li>
+          <li>
+            <strong>Invoice Generation:</strong> Auto-generate invoices with tax
+            calculation
+          </li>
+          <li>
+            <strong>Payment Processing:</strong> Multiple payment methods (Cash,
+            Card, Mobile Money)
+          </li>
+          <li>
+            <strong>Receipt Printing:</strong> Print or save receipts for
+            customers
+          </li>
+        </ul>
+      </div>
+
+      <!-- 8. Screenshots & Demonstrations -->
+      <div class="section">
+        <h2>📸 8. Screenshots & Demonstrations</h2>
+        <p class="text-muted mb-4">
+          Below are screenshots of key functionalities.
+          <strong
+            >Replace the placeholder images with your actual
+            screenshots.</strong
+          >
+        </p>
+
+        <h3>Admin Dashboard</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/asmin_over.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Admin Dashboard Overview</h5>
+              <p>
+                <strong>What it shows:</strong> Statistics for total users,
+                products, sales, and revenue with charts.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Admin logs in and views the
+                dashboard.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Complete overview of
+                supermarket performance with metrics.
+              </p>
+            </div>
+          </div>
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/manageusewithcrude.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>User Management (CRUD)</h5>
+              <p>
+                <strong>What it shows:</strong> Admin can view all users, change
+                roles, activate/deactivate accounts.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Navigate to Manage Users, click
+                edit/delete/toggle status.
+              </p>
+              <p>
+                <strong>Expected result:</strong> User roles updated, accounts
+                activated/deactivated.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Admin - Product & Category Management</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/manageproduct.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Manage Products with Image Upload</h5>
+              <p>
+                <strong>What it shows:</strong> Admin can add, edit, delete
+                products with images, barcodes, prices, and stock.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Navigate to Products, click Add
+                Product, fill form with image.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Product appears in inventory
+                with image preview.
+              </p>
+            </div>
+          </div>
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/managecate.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Manage Categories</h5>
+              <p>
+                <strong>What it shows:</strong> Admin can add, edit, delete
+                product categories.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Navigate to Categories, click
+                Add Category.
+              </p>
+              <p>
+                <strong>Expected result:</strong> New category appears in
+                product forms.
+              </p>
+            </div>
+          </div>
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/managesupp.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Manage Suppliers</h5>
+              <p>
+                <strong>What it shows:</strong> Admin can manage supplier
+                information and contact details.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Navigate to Suppliers, click
+                Add Supplier.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Supplier added to database.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Manager - Inventory Management</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/manageinve.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Inventory Dashboard</h5>
+              <p>
+                <strong>What it shows:</strong> Manager sees stock levels, low
+                stock alerts, and can update quantities.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Navigate to Inventory, view
+                stock levels, click Update Stock.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Stock levels updated, low
+                stock items highlighted.
+              </p>
+            </div>
+          </div>
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/lowstock_allert.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Low Stock Alerts</h5>
+              <p>
+                <strong>What it shows:</strong> Products with stock below
+                minimum level are highlighted.
+              </p>
+              <p>
+                <strong>How to perform:</strong> View Inventory page, low stock
+                items appear with warning.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Immediate visibility of items
+                needing restock.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Cashier - Point of Sale</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/cashierprocess.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            <div class="caption">
+              <h5>Point of Sale (POS) Interface</h5>
+              <p>
+                <strong>What it shows:</strong> Cashier can search products, add
+                to cart, and process checkout.
+              </p>
+              <p>
+                <strong>How to perform:</strong> Login as Cashier, go to POS,
+                search/add products.
+              </p>
+              <p>
+                <strong>Expected result:</strong> Items added to cart with
+                real-time total calculation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Sales Reports & Analytics</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/report.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+
+        <h3>HASH PASSWORD</h3>
+        <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/HASH.JPG"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+            
+            
+        </div>
+            
+            
+        </div>
+      </div>
+
+      <!-- 9. Security Features -->
+      <div class="section">
+        <h2>🔒 9. Security Features</h2>
+        <ul class="checklist">
+          <li>
+            <i class="✅"></i> <strong>Password Hashing:</strong> All
+            passwords stored using <code>password_hash()</code> with BCRYPT
+            algorithm
+          </li>
+          <li>
+            <i class="✅"></i> <strong>Prepared Statements:</strong> All
+            database queries use PDO prepared statements to prevent SQL
+            injection
+          </li>
+          <li>
+            <i class="✅"></i> <strong>Session Management:</strong> Secure
+            session handling with session_regenerate_id()
+          </li>
+          <li>
+            <i class="✅"></i>
+            <strong>Role-Based Access Control:</strong> Each user role has
+            specific permissions (requireAdmin, requireManager, requireLogin)
+          </li>
+          <li>
+            <i class="✅"></i> <strong>XSS Protection:</strong> All user input
+            sanitized with <code>htmlspecialchars()</code>
+          </li>
+          <li>
+            <i class="✅"></i> <strong>Form Validation:</strong> Both
+            client-side and server-side validation
+          </li>
+          <li>
+            <i class="✅"></i> <strong>Status Checks:</strong> Inactive users
+            cannot access the system
+          </li>
+          <li>
+            <i class="✅"></i> <strong>File Upload Security:</strong> Product
+            images validated for type and size
+          </li>
+        </ul>
+      </div>
+
+      <!-- 10. Technology Stack -->
+      <div class="section">
+        <h2>🛠️ 10. Technology Stack</h2>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Technology</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frontend</td>
+              <td>HTML5, CSS3, JavaScript</td>
+              <td>Structure, styling, interactivity</td>
+            </tr>
+            <tr>
+              <td>CSS Framework</td>
+              <td>Bootstrap 5</td>
+              <td>Responsive design, components</td>
+            </tr>
+            <tr>
+              <td>Icons</td>
+              <td>Bootstrap Icons</td>
+              <td>Visual elements</td>
+            </tr>
+            <tr>
+              <td>Backend</td>
+              <td>PHP 7.4+</td>
+              <td>Server-side logic</td>
+            </tr>
+            <tr>
+              <td>Database</td>
+              <td>MySQL</td>
+              <td>Data storage</td>
+            </tr>
+            <tr>
+              <td>Database Access</td>
+              <td>PDO</td>
+              <td>Secure database connection</td>
+            </tr>
+            <tr>
+              <td>Charts</td>
+              <td>Chart.js</td>
+              <td>Analytics visualization</td>
+            </tr>
+            <tr>
+              <td>Version Control</td>
+              <td>Git & GitHub</td>
+              <td>Source code management</td>
+            </tr>
+            <tr>
+              <td>Hosting</td>
+              <td>InfinityFree</td>
+              <td>Live deployment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 11. Deployment & Links -->
+      <div class="section">
+        <h2>🌐 11. Deployment & Links</h2>
+
+        <h3>GitHub Repository</h3>
+        <p>
+          <strong>Repository Link:</strong>
+          <a
+            href="https://github.com/misigarojados/supermarket-system"
+            target="_blank"
+            >https://github.com/misigarojados/supermarket-system</a
+          >
+        </p>
+        <p>The repository contains:</p>
+        <ul>
+          <li>All PHP source files</li>
+          <li>Database SQL file (<code>database.sql</code>)</li>
+          <li>CSS stylesheets</li>
+          <li>JavaScript files</li>
+          <li>README.md with setup instructions</li>
+          <li>Uploaded product images and assets</li>
+        </ul>
+
+        <h3>Live Deployment (InfinityFree)</h3>
+        <p>
+          <strong>Live Website:</strong>
+          <a href="https://neza-supermarket.kesug.com/" target="_blank"
+            >https://neza-supermarket.kesug.com/</a
+          >
+        </p>
+        <p>
+          The system is successfully deployed and accessible online with all
+          features working correctly.
+        </p>
+
+        <div class="screenshot-card" style="margin-top: 20px">
+          <div class="screenshot-grid">
+          <div class="screenshot-card">
+            <div class="screenshot-placeholder">
+              <img
+                src="../report/GIT.jpeg"
+                alt="Admin Dashboard Overview"
+                style="max-width: 100%; height: auto"
+              />
+              <p
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  font-size: 12px;
+                  background: rgba(255, 255, 255, 0.8);
+                  padding: 2px 8px;
+                "
+              >
+                📸 Admin Dashboard Overview
+              </p>
+            </div>
+          <div class="caption">
+            <h5>GitHub Repository Structure</h5>
+            <p>
+              Screenshot showing folder structure: /admin, /cashier, /manager,
+              /config, /includes, etc.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Conclusion & Marking Checklist -->
+    
+      <!-- Footer -->
+      <div class="footer">
+        <p><strong>SuperMarket Pro</strong> - Supermarket Management System</p>
+        <p>
+          Developed for Design Thinking and Didactic Material Development (DTMD
+          5312)
+        </p>
+        <p>Module Leader: Etienne NTAMBARA, Ass. Lecturer</p>
+        <p>Faculty of Education | Department of Didactics</p>
+        <p style="margin-top: 20px">
+          <a href="https://github.com/misigarojados/supermarket-system"
+            >GitHub Repository</a
+          >
+          |
+          <a href="https://neza-supermarket.kesug.com/">Live Demo</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.8rem">
+          © 2026 - All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
